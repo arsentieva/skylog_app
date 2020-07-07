@@ -10,14 +10,20 @@ import InputIcon from '@material-ui/icons/Input';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    boxShadow: 'none'
+    boxShadow: 'none',
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)'
   },
   flexGrow: {
     flexGrow: 1
   },
   signOutButton: {
     marginLeft: theme.spacing(1)
-  }
+  },
+  logoImage: {
+    marginTop: theme.spacing(0.5),
+    width: 60,
+    borderRadius: 100
+  },
 }));
 
 const Topbar = props => {
@@ -31,7 +37,7 @@ const Topbar = props => {
     <AppBar {...rest} className={clsx(classes.root, className)} >
       <Toolbar>
         <RouterLink to="/">
-          <img alt="Logo" src="/images/logos/skylog.png" width={70} />
+          <img className={classes.logoImage} alt="Logo" src="/images/logos/skylog.png" />
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>

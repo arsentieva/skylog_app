@@ -8,24 +8,14 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+    height: '100%',
   },
   chartContainer: {
     position: 'relative',
-    height: '300px'
+    height: '200px'
   },
-  stats: {
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  jumpType: {
-    textAlign: 'center',
-    padding: theme.spacing(1)
-  },
-  jumpTypeIcon: {
-    color: theme.palette.icon
-  }
+
+
 }));
 
 const JumpsGauge = props => {
@@ -40,7 +30,8 @@ const JumpsGauge = props => {
       <Divider />
       <CardContent>
       <div className={classes.chartContainer}>
-        <GaugeChart id="gauge-chart" nrOfLevels={40} percent={0.8}/>
+        <GaugeChart id="gauge-chart"  nrOfLevels={40} colors={["#2196F3", " #21CBb0"]} arcWidth={0.35}
+           percent={0.37} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#347043" />
         </div>
 
       </CardContent>

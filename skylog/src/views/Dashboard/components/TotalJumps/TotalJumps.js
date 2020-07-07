@@ -8,7 +8,7 @@ import ScoreIcon from '@material-ui/icons/Score';
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
-    backgroundColor: theme.palette.primary.main,
+    background:  'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     color: theme.palette.primary.contrastText
   },
   content: {

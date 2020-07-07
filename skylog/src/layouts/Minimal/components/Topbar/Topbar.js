@@ -5,10 +5,16 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    boxShadow: 'none'
-  }
+    boxShadow: 'none',
+    background: 'linear-gradient(45deg, #21CBF3 30%, #2196F3 90%)'
+  },
+  logoImage: {
+    marginTop: theme.spacing(0.5),
+    width: 60,
+    borderRadius: 100
+  },
 }));
 
 const Topbar = props => {
@@ -25,7 +31,7 @@ const Topbar = props => {
     >
       <Toolbar>
         <RouterLink to="/">
-          <img alt="Logo" src="/images/logos/skylog.png" width={70}/>
+          <img  className={classes.logoImage}  alt="Logo" src="/images/logos/skylog.png" />
         </RouterLink>
       </Toolbar>
     </AppBar>
