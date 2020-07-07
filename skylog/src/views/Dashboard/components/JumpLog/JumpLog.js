@@ -21,17 +21,17 @@ const useStyles = makeStyles(theme => ({
   actions: {
     justifyContent: 'flex-end'
   },
-  container: {
-    maxHeight: 440,
-  },
+  // container: {
+  //   maxHeight: 440,
+  // },
 }));
 
 const JumpLog = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [jumps] = useState(mockData);
 
   const handleChangePage = (event, newPage) => {
@@ -42,6 +42,11 @@ const JumpLog = props => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleShowAll=()=> {
+     setRowsPerPage(jumps.length);
+     setPage(0);
+  }
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
@@ -92,7 +97,7 @@ const JumpLog = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button color="primary" size="small" variant="text">View all <ArrowRightIcon />
+        <Button onClick={handleShowAll} color="primary" size="small" variant="text">View all <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>
@@ -163,6 +168,8 @@ return (
         </>
         )
 }
+
+//TODO once the data is set then JumpRow.protType shell be setup too.
 
 JumpLog.propTypes = {
   className: PropTypes.string
