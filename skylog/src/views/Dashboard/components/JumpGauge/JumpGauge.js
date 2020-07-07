@@ -3,7 +3,7 @@ import GaugeChart from 'react-gauge-chart'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import {  Card,  CardHeader,  CardContent,  IconButton,  Divider} from '@material-ui/core';
+import {  Card,  CardHeader,  CardContent,  IconButton, Typography, Divider} from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
 const useStyles = makeStyles(theme => ({
@@ -14,22 +14,27 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: '200px'
   },
+  title: {
+    fontWeight: 700,
+    marginLeft: theme.spacing(19),
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const JumpsGauge = props => {
   const { className, ...rest } = props;
+   const classes = useStyles();
 
-  const classes = useStyles();
    return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="Jumps Speed" />
+      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="SPEED" />
       <Divider />
       <CardContent>
       <div className={classes.chartContainer}>
         <GaugeChart id="gauge-chart"  nrOfLevels={40} colors={["#0196F3", " #21CBb0"]} arcWidth={0.35}
            percent={0.37} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#21CBF3" needleBaseColor="#2176F3" />
+        <Typography  className={classes.title}  variant="h5" > Average freefall speed </Typography>
         </div>
-
       </CardContent>
     </Card>
   );

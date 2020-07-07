@@ -39,7 +39,7 @@ const Aircrafts = props => {
       <CardContent>
         <Grid container justify="space-between" >
           <Grid item>
-            <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> FREEFALL DISTANCE</Typography>
+            <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> AIRCRAFTS</Typography>
             <Divider className={classes.divider} />
           </Grid>
         </Grid>

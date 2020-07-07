@@ -16,16 +16,16 @@ const useStyles = makeStyles(theme => ({
   },
   chartContainer: {
     position: 'relative',
-    height: '300px'
+    height: '200px'
   },
   stats: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
     display: 'flex',
     justifyContent: 'center'
   },
   jumpType: {
     textAlign: 'center',
-    padding: theme.spacing(1)
+    paddingLeft: theme.spacing(2)
   },
   jumpTypeIcon: {
     color: theme.palette.icon
@@ -52,7 +52,7 @@ const JumpsByType = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: ['Wingsuit ', 'Tablet', 'Mobile']
+    labels: ['Wingsuit ', 'Relative Work', 'Freeflying']
   };
 
   const options = {
@@ -100,7 +100,7 @@ const JumpsByType = props => {
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="Jumps By Type" />
+      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMPS BY TYPE" />
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>
@@ -110,8 +110,8 @@ const JumpsByType = props => {
             {types.map(jumpType => (
             <div className={classes.jumpType} key={jumpType.title} >
               <span className={classes.jumpTypeIcon}>{jumpType.icon}</span>
-              <Typography variant="body1">{jumpType.title}</Typography>
-              <Typography style={{ color: jumpType.color }} variant="h2" > {jumpType.value}%
+              <Typography variant="h5">{jumpType.title}</Typography>
+              <Typography style={{ color: jumpType.color }} variant="h4" > {jumpType.value}%
               </Typography>
             </div>
           ))}

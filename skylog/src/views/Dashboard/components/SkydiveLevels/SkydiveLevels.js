@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import GaugeChart from 'react-gauge-chart'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card,  CardContent, Grid,Typography, Divider} from '@material-ui/core';
+import { Card, CardHeader, CardContent,IconButton, Typography, Divider} from '@material-ui/core';
+
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,32 +17,25 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontWeight: 700,
-    marginLeft: theme.spacing(14),
-    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(15),
+    marginTop: theme.spacing(2),
   },
-  divider: {
-    marginLeft: theme.spacing(14),
-  
-  }
+
 }));
 
 const SkydiveLevels = props => {
   const { className, ...rest } = props;
-
   const classes = useStyles();
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
+    <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMP LEVELS" />
+    <Divider />
       <CardContent>
-        <Grid container justify="space-between" >
-          <Grid item>
-            <Typography className={classes.title} variant="body1" gutterBottom >135 JUMPS TO 1K </Typography>
-            <Divider className={classes.divider}/>
-          </Grid>
-        </Grid>
         <GaugeChart id="gauge-chart2"  nrOfLevels={0} arcsLength={[0.05, 0.15, 0.25, 0.5]} arcPadding={0.01} colors={["#00ffff","#2176F3" ]} arcWidth={0.2}
            percent={0.2} textColor="#00F00"  formatTextValue={value=>value*100+" jumps"} />
-           </CardContent>
+            <Typography className={classes.title} variant="h5" gutterBottom > 135 jumps until bext milestone</Typography>
+      </CardContent>
     </Card>
   );
 };
