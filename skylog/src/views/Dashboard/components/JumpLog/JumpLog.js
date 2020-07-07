@@ -143,31 +143,18 @@ return (
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Notes
-              </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell>Notes</TableCell>
+                    <TableCell>Signature</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {jump.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * jump.price * 100) / 100}
-                      </TableCell>
+                    <TableRow key={jump.notes}>
+                      <TableCell>{jump.notes}</TableCell>
+                      <TableCell>{jump.signature}</TableCell>
                     </TableRow>
-                  ))}
                 </TableBody>
               </Table>
             </Box>

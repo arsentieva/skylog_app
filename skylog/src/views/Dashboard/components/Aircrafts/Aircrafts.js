@@ -7,7 +7,8 @@ import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+    height: '100%',
+    background:  'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
   },
   content: {
     alignItems: 'center',
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   airplaneIcon: {
-    color: theme.palette.error.dark
+    color: "#2176F3"
   },
   divider: {
     marginBottom: theme.spacing(1),
@@ -39,13 +40,13 @@ const Aircrafts = props => {
       <CardContent>
         <Grid container justify="space-between" >
           <Grid item>
-            <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> AIRCRAFTS</Typography>
+            <Typography className={classes.title} color="inherit" gutterBottom variant="body1"> AIRCRAFTS</Typography>
             <Divider className={classes.divider} />
           </Grid>
         </Grid>
         <div className={classes.airplane}>
           <AirplanemodeActiveIcon className={classes.airplaneIcon} />
-          <Typography variant="h1">15</Typography>
+          <Typography  color="#000000"  variant="h1">15</Typography>
         </div>
       </CardContent>
     </Card>

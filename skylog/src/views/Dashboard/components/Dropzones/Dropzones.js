@@ -8,6 +8,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
+    background:  'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     backgroundImage: "url(/images/logos/unnamed.png)",
     backgroundSize: "390px 250px"
   },
