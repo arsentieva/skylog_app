@@ -7,9 +7,13 @@ import {
   JumpLog,
   JumpsByType,
   SkydiveLevels,
-  TotalJumps,
+  TotalPerMonth,
   JumpGauge,
-  FreefallTime
+  FreefallTime,
+  FreefallDistance,
+  TotalPerYear,
+  Aircrafts,
+  Dropzones
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -24,12 +28,16 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={4} >
-        <Grid item lg={3} sm={6} xl={3} xs={12}> <TotalJumps /> </Grid>
-        <Grid item lg={4} md={6} xl={3} xs={12}> <JumpGauge /> </Grid>
-        <Grid item lg={3} sm={6} xl={3} xs={12}> <FreefallTime /> </Grid>
         <Grid item lg={3} sm={6} xl={3} xs={12}> <SkydiveLevels/> </Grid>
-        <Grid item lg={8} md={12} xl={9} xs={12}> <JumpLog /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <TotalPerYear /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <TotalPerMonth /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <FreefallTime /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <FreefallDistance /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <Dropzones /> </Grid>
+        <Grid item lg={3} sm={6} xl={2} xs={12}> <Aircrafts /> </Grid>
         <Grid item lg={4} md={6} xl={3} xs={12}> <JumpsByType /> </Grid>
+        <Grid item lg={4} md={6} xl={4} xs={12}> <JumpGauge /> </Grid>
+        <Grid item lg={12} md={12} xl={12} xs={12}> <JumpLog /> </Grid>
         <Grid item lg={8} md={12} xl={9} xs={12}> <JumpLog /> </Grid>
       </Grid>
     </div>

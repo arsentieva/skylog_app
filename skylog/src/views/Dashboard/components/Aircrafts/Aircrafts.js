@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,24 +16,20 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontWeight: 700
   },
-  difference: {
+  airplane: {
     marginTop: theme.spacing(2),
     display: 'flex',
     alignItems: 'center'
   },
-  differenceIcon: {
+  airplaneIcon: {
     color: theme.palette.error.dark
-  },
-  differenceValue: {
-    color: theme.palette.error.dark,
-    marginRight: theme.spacing(1)
   },
   divider: {
     marginBottom: theme.spacing(1),
   }
 }));
 
-const FreefallTime = props => {
+const Aircrafts = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -43,23 +39,21 @@ const FreefallTime = props => {
       <CardContent>
         <Grid container justify="space-between" >
           <Grid item>
-            <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> FREEFALL TIME</Typography>
+            <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> FREEFALL DISTANCE</Typography>
             <Divider className={classes.divider} />
-            <Typography variant="h3">3:33m</Typography>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2"> 12% </Typography>
-          <Typography className={classes.caption} variant="caption" > Since last month </Typography>
+        <div className={classes.airplane}>
+          <AirplanemodeActiveIcon className={classes.airplaneIcon} />
+          <Typography variant="h1">15</Typography>
         </div>
       </CardContent>
     </Card>
   );
 };
 
-FreefallTime.propTypes = {
+Aircrafts.propTypes = {
   className: PropTypes.string
 };
 
-export default FreefallTime;
+export default Aircrafts;

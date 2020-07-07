@@ -1,17 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
+import GaugeChart from 'react-gauge-chart'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  Avatar,
-  LinearProgress
-} from '@material-ui/core';
-
-import TrackChangesIcon from '@material-ui/icons/TrackChanges';
+import { Card,  CardContent, Grid,Typography, Divider} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,23 +15,12 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontWeight: 700,
-    marginLeft: theme.spacing(17),
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
+    marginLeft: theme.spacing(14),
+    marginBottom: theme.spacing(1),
   },
-  avatar: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    height: 56,
-    width: 56,
-    marginLeft: theme.spacing(17)
-  },
-  icon: {
-    height: 32,
-    width: 32,
-  },
-  progress: {
-    marginTop: theme.spacing(5)
+  divider: {
+    marginLeft: theme.spacing(14),
+  
   }
 }));
 
@@ -53,18 +34,13 @@ const SkydiveLevels = props => {
       <CardContent>
         <Grid container justify="space-between" >
           <Grid item>
-            <Avatar className={classes.avatar}>
-              <TrackChangesIcon className={classes.icon} />
-            </Avatar>
-          </Grid>
-          <Grid item>
-            <Typography  className={classes.title} color="textSecondary"  gutterBottom  variant="body2" >   Skydive Levels    </Typography>
-            <Typography variant="h3">135 jumps to Green Milestone </Typography>
+            <Typography className={classes.title} variant="body1" gutterBottom >135 JUMPS TO 1K </Typography>
+            <Divider className={classes.divider}/>
           </Grid>
         </Grid>
-        <LinearProgress className={classes.progress} value={27}  variant="determinate"
-        />
-      </CardContent>
+        <GaugeChart id="gauge-chart2"  nrOfLevels={0} arcsLength={[0.05, 0.15, 0.25, 0.5]} arcPadding={0.01} colors={["#00ffff","#2176F3" ]} arcWidth={0.2}
+           percent={0.2} textColor="#00F00"  formatTextValue={value=>value*100+" jumps"} />
+           </CardContent>
     </Card>
   );
 };

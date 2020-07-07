@@ -14,24 +14,20 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: '200px'
   },
-
-
 }));
 
 const JumpsGauge = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
-
-
    return (
     <Card {...rest} className={clsx(classes.root, className)} >
       <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="Jumps Speed" />
       <Divider />
       <CardContent>
       <div className={classes.chartContainer}>
-        <GaugeChart id="gauge-chart"  nrOfLevels={40} colors={["#2196F3", " #21CBb0"]} arcWidth={0.35}
-           percent={0.37} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#347043" />
+        <GaugeChart id="gauge-chart"  nrOfLevels={40} colors={["#0196F3", " #21CBb0"]} arcWidth={0.35}
+           percent={0.37} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#21CBF3" needleBaseColor="#2176F3" />
         </div>
 
       </CardContent>
