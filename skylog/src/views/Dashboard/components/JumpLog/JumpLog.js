@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardActions, CardHeader, CardContent, Button, Box, TablePagination, TableContainer, Divider,Typography ,Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TableSortLabel, Collapse, IconButton} from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
@@ -32,6 +33,7 @@ const JumpLog = props => {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [viewAll, setViewAll] = useState(false);
   const [jumps] = useState(mockData);
 
   const handleChangePage = (event, newPage) => {
@@ -43,10 +45,17 @@ const JumpLog = props => {
     setPage(0);
   };
 
-  const handleShowAll=()=> {
-     setRowsPerPage(jumps.length);
-     setPage(0);
-  }
+  useEffect(()=>{
+    if(jumps.length!==0){
+      if(viewAll){
+        setRowsPerPage(jumps.length);
+        setPage(0);
+      } else {
+        setRowsPerPage(5);
+        setPage(0);
+      }
+    }
+   },[viewAll, jumps.length]);
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
@@ -97,7 +106,7 @@ const JumpLog = props => {
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
-        <Button onClick={handleShowAll} color="primary" size="small" variant="text">View all <ArrowRightIcon />
+        <Button onClick={()=>setViewAll(!viewAll)} color="primary" size="small" variant="text"> {viewAll ? "Recent 5 jumps": "View all" } {viewAll ?  <ArrowDropUpIcon />: <ArrowDropDownIcon />}
         </Button>
       </CardActions>
     </Card>

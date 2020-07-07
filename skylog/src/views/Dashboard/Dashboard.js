@@ -8,7 +8,8 @@ import {
   JumpsByType,
   SkydiveLevels,
   TotalJumps,
-  JumpGauge
+  JumpGauge,
+  FreefallTime
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -24,9 +25,11 @@ const Dashboard = () => {
     <div className={classes.root}>
       <Grid container spacing={4} >
         <Grid item lg={3} sm={6} xl={3} xs={12}> <TotalJumps /> </Grid>
-        <Grid item lg={3} sm={6} xl={3} xs={12}> <SkydiveLevels/> </Grid>
-        <Grid item lg={4} md={6} xl={3} xs={12}> <JumpsByType /> </Grid>
         <Grid item lg={4} md={6} xl={3} xs={12}> <JumpGauge /> </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}> <FreefallTime /> </Grid>
+        <Grid item lg={3} sm={6} xl={3} xs={12}> <SkydiveLevels/> </Grid>
+        <Grid item lg={8} md={12} xl={9} xs={12}> <JumpLog /> </Grid>
+        <Grid item lg={4} md={6} xl={3} xs={12}> <JumpsByType /> </Grid>
         <Grid item lg={8} md={12} xl={9} xs={12}> <JumpLog /> </Grid>
       </Grid>
     </div>

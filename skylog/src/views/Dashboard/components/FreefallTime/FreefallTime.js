@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Budget = props => {
+const FreefallTime = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -92,8 +92,8 @@ const Budget = props => {
   );
 };
 
-Budget.propTypes = {
+FreefallTime.propTypes = {
   className: PropTypes.string
 };
 
-export default Budget;
+export default FreefallTime;
