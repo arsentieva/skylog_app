@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
-// import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardActions, CardHeader, CardContent, Button, Box, Paper, TablePagination, Divider,Typography ,Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TableSortLabel, Collapse, IconButton} from '@material-ui/core';
+import { Card, CardActions, CardHeader, CardContent, Button, Box, TablePagination, Divider,Typography ,Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TableSortLabel, Collapse, IconButton} from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -53,7 +52,6 @@ const JumpLog = props => {
       <CardHeader action={ <Button color="primary" size="medium"  variant="outlined" > Log Jump </Button>} title="Jump Log"/>
       <Divider />
       <CardContent className={classes.content}>
-        {/* <PerfectScrollbar> */}
           <div className={classes.inner}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -93,7 +91,6 @@ const JumpLog = props => {
               onChangeRowsPerPage={handleChangeRowsPerPage}
             />
           </div>
-        {/* </PerfectScrollbar> */}
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
