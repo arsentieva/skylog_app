@@ -7,6 +7,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import EditLocationIcon from '@material-ui/icons/EditLocation';
 
 import { Profile, SidebarNav } from './components';
 
@@ -45,6 +46,11 @@ const Sidebar = props => {
       icon: <DashboardIcon />
     },
     {
+      title: 'Log Jump',
+      href: '/log-jump',
+      icon: <EditLocationIcon />
+    },
+    {
       title: 'Login',
       href: '/sign-in',
       icon: <LockOpenIcon />
@@ -54,6 +60,7 @@ const Sidebar = props => {
       href: '/account',
       icon: <AccountBoxIcon />
     },
+
     {
       title: 'Settings',
       href: '/settings',
