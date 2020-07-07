@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardActions, CardHeader, CardContent, Button, Box, TablePagination, Divider,Typography ,Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TableSortLabel, Collapse, IconButton} from '@material-ui/core';
+import { Card, CardActions, CardHeader, CardContent, Button, Box, TablePagination, TableContainer, Divider,Typography ,Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TableSortLabel, Collapse, IconButton} from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -18,16 +18,12 @@ const useStyles = makeStyles(theme => ({
   inner: {
     minWidth: 800
   },
-  statusContainer: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  status: {
-    marginRight: theme.spacing(1)
-  },
   actions: {
     justifyContent: 'flex-end'
-  }
+  },
+  container: {
+    maxHeight: 440,
+  },
 }));
 
 const JumpLog = props => {
@@ -53,6 +49,7 @@ const JumpLog = props => {
       <Divider />
       <CardContent className={classes.content}>
           <div className={classes.inner}>
+          <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
@@ -76,11 +73,12 @@ const JumpLog = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-              {jumps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).reverse().map((jump) => (
-                 <JumpRow key={jump.id} jump={jump}/>
-              ))}
+                {jumps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).reverse().map((jump) => (
+                  <JumpRow key={jump.id} jump={jump}/>
+                ))}
               </TableBody>
             </Table>
+            </TableContainer>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, 100]}
               component="div"
