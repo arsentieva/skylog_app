@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   location: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
     display: 'flex',
     alignItems: 'center'
   },

@@ -17,16 +17,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontWeight: 700
   },
-  avatar: {
-    backgroundColor: theme.palette.white,
-    color: theme.palette.primary.main,
-    height: 56,
-    width: 56
-  },
-  icon: {
-    height: 32,
-    width: 32
-  }
+  data: {
+    marginTop: theme.spacing(3),
+     }
 }));
 
 const TotalPerMonth = props => {
@@ -41,7 +34,7 @@ const TotalPerMonth = props => {
           <Grid item>
             <Typography  className={classes.title} color="inherit" gutterBottom  variant="body1" >PREVIOUS 30 DAYS </Typography>
             <Divider />
-            <Typography color="inherit" variant="h1" > 68 </Typography>
+            <Typography className={classes.data} color="inherit" variant="h1" > 68 </Typography>
           </Grid>
         </Grid>
       </CardContent>

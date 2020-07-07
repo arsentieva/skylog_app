@@ -43,11 +43,11 @@ const JumpsByType = props => {
       {
         data: [63, 15, 22],
         backgroundColor: [
-          theme.palette.success.light,
-          theme.palette.info.main,
-          theme.palette.warning.main
+          "#2176F3",
+          "#00facc",
+          "#08B6CE"
         ],
-        borderWidth: 8,
+        borderWidth: 2,
         borderColor: theme.palette.white,
         hoverBorderColor: theme.palette.white
       }
@@ -82,25 +82,25 @@ const JumpsByType = props => {
       title: 'Wingsuit',
       value: '63',
       icon: <EmojiPeopleIcon />,
-      color: theme.palette.success.light
+      color: "#2176F3"
     },
     {
       title: 'Relative Work',
       value: '15',
       icon: <LandscapeIcon />,
-      color: theme.palette.info.main
+      color: "#00facc",
     },
     {
       title: 'Freeflying',
       value: '23',
       icon: <AccessibilityIcon />,
-      color: theme.palette.warning.main
+      color:"#08B6CE"
     }
   ];
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMPS BY TYPE" />
+      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMP BY TYPE" />
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>

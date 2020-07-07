@@ -38,7 +38,7 @@ const Dashboard = () => {
         <Grid item lg={4} md={6} xl={4} xs={12}> <JumpsByType /> </Grid>
         <Grid item lg={4} md={6} xl={4} xs={12}> <JumpGauge /> </Grid>
         <Grid item lg={12} md={12} xl={12} xs={12}> <JumpLog /> </Grid>
-        <Grid item lg={8} md={12} xl={9} xs={12}> <JumpLog /> </Grid>
+
       </Grid>
     </div>
   );
