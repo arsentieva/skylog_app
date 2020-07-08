@@ -175,13 +175,21 @@ const SignIn = props => {
       if (!res.ok) {
         throw res;
       }
-      const {
-        token,
-        user: { id },
-      } = await res.json();
+      const { token, user: { id }, } = await res.json();
       login(token,id);
     } catch (error) {
-      console.error(error);
+      console.log(error)
+      let errorMsg ="";
+      if(error.status === 401) {
+        errorMsg = "The provided credentials were invalid";
+      }
+      setFormState(formState => ({
+        ...formState,
+        isValid: false,
+        errors: { email: [errorMsg], password: [""] },
+
+      }));
+      console.log(formState);
     }
   };
 
