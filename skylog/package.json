@@ -44,6 +44,7 @@
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
     "react-gauge-chart": "^0.2.5",
+    "react-google-login": "^5.1.20",
     "react-perfect-scrollbar": "^1.5.3",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",

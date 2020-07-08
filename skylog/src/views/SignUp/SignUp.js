@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
+import { apiBaseUrl } from "../../config";
 import { makeStyles } from '@material-ui/styles';
 import {
   Grid,
@@ -77,15 +78,12 @@ const useStyles = makeStyles(theme => ({
   },
   quoteText: {
     color: theme.palette.white,
-    fontWeight: 300
+    fontWeight: 700,
+    textShadow: "#ABC 1px 0 10px",
+    marginTop:theme.spacing(-17),
+    textTransform: "uppercase"
   },
-  name: {
-    marginTop: theme.spacing(3),
-    color: theme.palette.white
-  },
-  bio: {
-    color: theme.palette.white
-  },
+
   contentContainer: {},
   content: {
     height: '100%',
@@ -185,10 +183,46 @@ const SignUp = props => {
     history.goBack();
   };
 
-  const handleSignUp = event => {
+  const handleSignUp =async(event) => {
     event.preventDefault();
-    history.push('/');
+    let firstName=formState.values.firstName;
+    let lastName=formState.values.lastName;
+    let email=formState.values.email;
+    let password=formState.values.password;
+    console.log(email, password);
+    try {
+      const res = await fetch(`${apiBaseUrl}/users`, {
+        method: "post",
+        body: JSON.stringify({firstName, lastName, email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        throw res;
+      }
+      const { token, user: { id }, } = await res.json();
+      login(token,id);
+    } catch (error) {
+      console.log(error)
+      let errorMsg ="";
+      if(error.status === 401) {
+        errorMsg = "The provided credentials were invalid";
+      }
+      setFormState(formState => ({
+        ...formState,
+        isValid: false,
+        errors: { email: [errorMsg], password: [""] },
+
+      }));
+      console.log(formState);
+    }
   };
+
+  const login=(token)=>{
+    window.localStorage.setItem('state-skylog-app-token', token);
+    history.push('/');
+  }
+
 
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
@@ -210,23 +244,9 @@ const SignUp = props => {
                 className={classes.quoteText}
                 variant="h1"
               >
-                Hella narwhal Cosby sweater McSweeney's, salvia kitsch before
-                they sold out High Life.
+               Once you tasted the taste of Sky, you will forever look up.
               </Typography>
-              <div className={classes.person}>
-                <Typography
-                  className={classes.name}
-                  variant="body1"
-                >
-                  Takamaru Ayako
-                </Typography>
-                <Typography
-                  className={classes.bio}
-                  variant="body2"
-                >
-                  Manager at inVision
-                </Typography>
-              </div>
+
             </div>
           </div>
         </Grid>

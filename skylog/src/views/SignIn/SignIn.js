@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid, Button, IconButton, TextField, Link, Typography} from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiBaseUrl } from "../../config";
+import GoogleLogin from 'react-google-login';
 
 import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
@@ -201,6 +202,19 @@ const SignIn = props => {
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
 
+  const handleFailGoogleSignIn = (response) => {
+    console.log(response);
+    setFormState(formState => ({
+      ...formState,
+      isValid: false,
+      errors: { social: ["login failed"] },
+    }));
+  }
+  const handleGoogleSignIn = (response) => {
+    window.localStorage.setItem('state-skylog-app-token', response.tokenId);
+    history.push('/');
+  }
+
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
@@ -229,9 +243,14 @@ const SignIn = props => {
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button onClick={handleSignIn} size="large" variant="contained" >
-                      <GoogleIcon className={classes.socialIcon} /> Login with Google
-                    </Button>
+                    <GoogleLogin clientId="903312556036-iadcqp28eqijomh10mckbi1r6962vlcv.apps.googleusercontent.com"
+                      render={renderProps => (
+                        <Button onClick={renderProps.onClick} disabled={renderProps.disabled} isSignedIn={true} size="large" variant="contained" >
+                          <GoogleIcon className={classes.socialIcon} /> Login with Google
+                        </Button>
+                      )}  buttonText="Login"  onSuccess={handleGoogleSignIn}
+                      onFailure={handleFailGoogleSignIn} cookiePolicy={'single_host_origin'} />
+
                   </Grid>
                 </Grid>
                 <Typography align="center" className={classes.sugestion} color="textSecondary" variant="body1" > or login with email address
