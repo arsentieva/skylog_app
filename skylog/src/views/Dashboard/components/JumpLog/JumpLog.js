@@ -35,9 +35,7 @@ const JumpLog = props => {
   const [jumps] = useState(mockData);
   let history = useHistory();
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (newPage) => setPage(newPage);
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
