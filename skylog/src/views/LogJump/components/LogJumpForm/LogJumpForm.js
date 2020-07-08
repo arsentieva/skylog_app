@@ -25,14 +25,14 @@ const LogJumpForm = props => {
   const [values, setValues] = useState({
       id: 18,
       title: "Chelan Formation",
-      exit: 1710,
-      open: 1200,
+      exit: 6500,
+      open: 4200,
       freefall: "36s",
       jumpDate: 1555016400000,
       type: "freestyle",
       aircraft:"cessna",
       location: "Chelan",
-      wind: "46",
+      wind: "10",
       equipment: "icarus",
       velocity: "300",
       notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -66,26 +66,23 @@ const LogJumpForm = props => {
                   {/* <MenuItem value={20}>Windsuit</MenuItem>
                   <MenuItem value={30}>other</MenuItem> */}
                 </Select>
-                {/* <FormHelperText>Select Type</FormHelperText> */}
+
               </FormControl>
             </Grid>
             <Grid item md={1} xs={2}>
               <TextField fullWidth label="Freefall Time" margin="dense" name="title" onChange={handleChange} required value={values.freefall} variant="outlined" />
             </Grid>
             <Grid item md={4} xs={6}>
-              {/* <TextField label="Exit" margin="dense" name="email" onChange={handleChange} required value={values.exit} variant="outlined"/> */}
               <Typography id="vertical-slider" gutterBottom> Exit(ft)</Typography>
-              <Slider defaultValue={6000}  step={250} marks min={2500} max={16000} valueLabelDisplay="on"/>
+              <Slider defaultValue={6000} step={250} marks min={2500} max={16000} valueLabelDisplay="on" name="exit" onChange={handleChange} required value={values.exit}/>
             </Grid>
             <Grid item md={4} xs={6}>
-              {/* <TextField fullWidth label="Open" margin="dense" name="open" onChange={handleChange} type="number" value={values.open} variant="outlined"/> */}
               <Typography id="vertical-slider" gutterBottom> Open(ft) </Typography>
-              <Slider defaultValue={4500} step={250} marks min={2000} max={16000} valueLabelDisplay="on"/>
+              <Slider defaultValue={4500} step={250} marks min={2000} max={16000} valueLabelDisplay="on" name="open" onChange={handleChange} required value={values.open}/>
             </Grid>
             <Grid item md={4} xs={6} >
-              {/* <TextField fullWidth label="Wind" margin="dense" name="wind" onChange={handleChange}  required value={values.wind} variant="outlined"/> */}
               <Typography id="vertical-slider" gutterBottom> Wind(mile/h) </Typography>
-              <Slider defaultValue={10}   step={1} marks min={1} max={25} valueLabelDisplay="on"/>
+              <Slider defaultValue={10}   step={1} marks min={1} max={25} valueLabelDisplay="on" name="wind" onChange={handleChange}  required value={values.wind}/>
             </Grid>
             <Grid item md={6} xs={12} >
               <TextField fullWidth label="Aircraft" margin="dense" name="aircraft" onChange={handleChange}  required value={values.aircraft} variant="outlined"/>
@@ -100,11 +97,9 @@ const LogJumpForm = props => {
               <TextField fullWidth label="Velocity" margin="dense" name="velocity" onChange={handleChange}  required value={values.velocity} variant="outlined"/>
             </Grid>
             <Grid item md={6} xs={12} >
-              {/* <TextField fullWidth label="Select Date" margin="dense" name="date" onChange={handleChange} required select SelectProps={{ native: true }} value={values.date}
-                variant="outlined" >{states.map(option => (<option key={option.value} value={option.value}> {option.label} </option>))}</TextField> */}
-               <div className={classes.dateTime}>
+              <div className={classes.dateTime}>
                 <DateTimePicker />
-                </div>
+              </div>
             </Grid>
             <Grid item md={12} xs={12} >
               <TextField fullWidth label="Notes" margin="dense" name="notes" onChange={handleChange}  required value={values.notes} variant="outlined"/>
