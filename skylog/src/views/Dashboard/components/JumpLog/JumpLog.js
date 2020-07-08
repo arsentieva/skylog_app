@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -11,7 +12,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import mockData from './data';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {},
   content: {
     padding: 0
@@ -22,9 +23,6 @@ const useStyles = makeStyles(theme => ({
   actions: {
     justifyContent: 'flex-end'
   },
-  // container: {
-  //   maxHeight: 440,
-  // },
 }));
 
 const JumpLog = props => {
@@ -35,6 +33,7 @@ const JumpLog = props => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [viewAll, setViewAll] = useState(false);
   const [jumps] = useState(mockData);
+  let history = useHistory();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -44,6 +43,7 @@ const JumpLog = props => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const handleJumpLog = () => history.push('/log-jump');
 
   useEffect(()=>{
     if(jumps.length!==0){
@@ -55,14 +55,14 @@ const JumpLog = props => {
         setPage(0);
       }
     }
-   },[viewAll, jumps.length]);
+  },[viewAll, jumps.length]);
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={ <Button color="primary" size="medium"  variant="outlined" > Log Jump </Button>} title="Jump Log"/>
+      <CardHeader action={ <Button color="primary" size="medium"  variant="outlined" onClick={handleJumpLog} > Log Jump </Button>} title="Jump Log"/>
       <Divider />
       <CardContent className={classes.content}>
-          <div className={classes.inner}>
+        <div className={classes.inner}>
           <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -92,17 +92,9 @@ const JumpLog = props => {
                 ))}
               </TableBody>
             </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, 100]}
-              component="div"
-              count={jumps.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
-          </div>
+          </TableContainer>
+          <TablePagination rowsPerPageOptions={[5, 10, 25, 100]} component="div" count={jumps.length}  rowsPerPage={rowsPerPage} page={page} onChangePage={handleChangePage} onChangeRowsPerPage={handleChangeRowsPerPage} />
+        </div>
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
@@ -112,7 +104,6 @@ const JumpLog = props => {
     </Card>
   );
 };
-
 
 function JumpRow (props) {
   const { jump } = props;
