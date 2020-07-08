@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
+import React, { useState, useEffect , useContext } from 'react';
+import { Link as RouterLink, withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import { makeStyles } from '@material-ui/styles';
@@ -7,6 +7,7 @@ import { Grid, Button, IconButton, TextField, Link, Typography} from '@material-
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiBaseUrl } from "../../config";
 import GoogleLogin from 'react-google-login';
+import {SkyLogContext} from "../../SkyLogContext";
 
 import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
@@ -118,7 +119,9 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = props => {
   const { history } = props;
-
+  const {login , authToken} = useContext(SkyLogContext);
+  // const [email, setEmail] = useState("demo@example.com");
+  // const [password, setPassword] = useState("1");
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -127,6 +130,8 @@ const SignIn = props => {
     touched: {},
     errors: {}
   });
+
+
 
   useEffect(() => {
     const errors = validate(formState.values, schema);
@@ -161,6 +166,10 @@ const SignIn = props => {
     }));
   };
 
+  if (authToken) {
+    return <Redirect to="/" />;
+  }
+
   const handleSignIn =async(event) => {
     event.preventDefault();
     let email=formState.values.email;
@@ -176,8 +185,10 @@ const SignIn = props => {
       if (!res.ok) {
         throw res;
       }
-      const { token, user: { id }, } = await res.json();
-      login(token,id);
+      const { token} = await res.json();
+      
+      login(token);
+
     } catch (error) {
       console.log(error)
       let errorMsg ="";
@@ -194,11 +205,11 @@ const SignIn = props => {
     }
   };
 
-  const login=(token)=>{
-    window.localStorage.setItem('state-skylog-app-token', token);
-    window.localStorage.setItem('state-skylog-app-method', "user");
-    history.push('/');
-  }
+  // const login=(token)=>{
+  //   window.localStorage.setItem('state-skylog-app-token', token);
+  //   window.localStorage.setItem('state-skylog-app-method', "user");
+  //   history.push('/');
+  // }
 
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;

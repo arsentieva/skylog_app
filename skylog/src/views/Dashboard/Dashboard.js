@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import { SkyLogContext } from '../../SkyLogContext';
 
 import {
 
@@ -24,6 +25,13 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+  const {jumps, loadJumps} = useContext(SkyLogContext);
+
+  useEffect( ()=> {
+    if(jumps.length=== 0){
+      loadJumps();
+    }
+  },[ loadJumps, jumps.length])
 
   return (
     <div className={classes.root}>
