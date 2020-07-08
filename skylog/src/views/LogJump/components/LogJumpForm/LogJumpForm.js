@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardHeader, CardContent, CardActions, Divider, Grid, Button, TextField} from '@material-ui/core';
+import { Card, CardHeader, CardContent, CardActions, Divider, Grid, Button, Select, MenuItem,TextField, FormControl, FormHelperText,InputLabel} from '@material-ui/core';
 
 import DateTimePicker from './DateTimePicker';
 
-const useStyles = makeStyles(() => ({
-  root: {}
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 100,
+    maxHeight: 15
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const LogJumpForm = props => {
@@ -57,7 +65,16 @@ const LogJumpForm = props => {
               <TextField fullWidth label="Open" margin="dense" name="open" onChange={handleChange} type="number" value={values.open} variant="outlined"/>
             </Grid>
             <Grid item md={6} xs={12} >
-              <TextField fullWidth label="Type" margin="dense" name="type" onChange={handleChange}  required value={values.type} variant="outlined"/>
+            <FormControl className={classes.formControl}>
+                <InputLabel>Select Type</InputLabel>
+                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={values.type} onChange={handleChange} autoWidth className={classes.selectEmpty}>
+                <MenuItem value=""><em>Select Type</em></MenuItem>
+                  <MenuItem value={"freestyle"}>Freestyle</MenuItem>
+                  {/* <MenuItem value={20}>Windsuit</MenuItem>
+                  <MenuItem value={30}>other</MenuItem> */}
+                </Select>
+               {/* <FormHelperText>Select Type</FormHelperText> */}
+             </FormControl>
             </Grid>
             <Grid item md={6} xs={12} >
               <TextField fullWidth label="Aircraft" margin="dense" name="aircraft" onChange={handleChange}  required value={values.aircraft} variant="outlined"/>
