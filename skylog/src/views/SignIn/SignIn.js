@@ -196,6 +196,7 @@ const SignIn = props => {
 
   const login=(token)=>{
     window.localStorage.setItem('state-skylog-app-token', token);
+    window.localStorage.setItem('state-skylog-app-method', "user");
     history.push('/');
   }
 
@@ -212,6 +213,7 @@ const SignIn = props => {
   }
   const handleGoogleSignIn = (response) => {
     window.localStorage.setItem('state-skylog-app-token', response.tokenId);
+    window.localStorage.setItem('state-skylog-app-method', "gapi");
     history.push('/');
   }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink , useHistory} from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -28,10 +28,14 @@ const useStyles = makeStyles(theme => ({
 
 const Topbar = props => {
   const { className, onSidebarOpen, ...rest } = props;
-
   const classes = useStyles();
-
   const [notifications] = useState([]);
+  let history = useHistory();
+
+  const handleSignOut = () => {
+    window.localStorage.clear();
+    history.push('/sign-in');
+  }
 
   return (
     <AppBar {...rest} className={clsx(classes.root, className)} >
@@ -46,7 +50,7 @@ const Topbar = props => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton className={classes.signOutButton} color="inherit" > <InputIcon /></IconButton>
+          <IconButton className={classes.signOutButton} color="inherit" onClick={handleSignOut} > <InputIcon /></IconButton>
         </Hidden>
         <Hidden lgUp>
           <IconButton color="inherit" onClick={onSidebarOpen} ><MenuIcon /></IconButton>
