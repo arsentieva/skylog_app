@@ -21,18 +21,19 @@ const useStyles = makeStyles((theme) => ({
 const LogJumpForm = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
+  const [wind,setWind] = useState(10);
+  const [exit,setExit] = useState(6500);
+  const [open,setOpen] = useState(4200);
 
   const [values, setValues] = useState({
       id: 18,
       title: "Chelan Formation",
-      exit: 6500,
-      open: 4200,
+
       freefall: "36s",
       jumpDate: 1555016400000,
       type: "freestyle",
       aircraft:"cessna",
       location: "Chelan",
-      wind: "10",
       equipment: "icarus",
       velocity: "300",
       notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -42,6 +43,7 @@ const LogJumpForm = props => {
 
   const handleChange = event => {
     setValues({...values,[event.target.name]: event.target.value });
+    console.log((event.target));
   };
 
   return (
@@ -74,15 +76,15 @@ const LogJumpForm = props => {
             </Grid>
             <Grid item md={4} xs={6}>
               <Typography id="vertical-slider" gutterBottom> Exit(ft)</Typography>
-              <Slider defaultValue={6000} step={250} marks min={2500} max={16000} valueLabelDisplay="on" name="exit" onChange={handleChange} required value={values.exit}/>
+              <Slider defaultValue={6000} step={250} marks min={2500} max={16000} valueLabelDisplay="on" name="exit" onChange={(event, v)=> {setExit(v)}} required value={exit}/>
             </Grid>
             <Grid item md={4} xs={6}>
               <Typography id="vertical-slider" gutterBottom> Open(ft) </Typography>
-              <Slider defaultValue={4500} step={250} marks min={2000} max={16000} valueLabelDisplay="on" name="open" onChange={handleChange} required value={values.open}/>
+              <Slider defaultValue={4500} step={250} marks min={2000} max={16000} valueLabelDisplay="on" name="open" onChange={(event, v)=> {setOpen(v)}} required value={open}/>
             </Grid>
             <Grid item md={4} xs={6} >
               <Typography id="vertical-slider" gutterBottom> Wind(mile/h) </Typography>
-              <Slider defaultValue={10}   step={1} marks min={1} max={25} valueLabelDisplay="on" name="wind" onChange={handleChange}  required value={values.wind}/>
+              <Slider defaultValue={10}  aria-labelledby="discrete-slider-small-steps"  step={1} marks min={1} max={25} valueLabelDisplay="on" name="wind"  onChange={(event, v)=> {setWind(v)}} value={wind} required />
             </Grid>
             <Grid item md={6} xs={12} >
               <TextField fullWidth label="Aircraft" margin="dense" name="aircraft" onChange={handleChange}  required value={values.aircraft} variant="outlined"/>

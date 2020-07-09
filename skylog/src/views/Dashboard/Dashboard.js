@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import { SkyLogContext } from '../../SkyLogContext';
 
 import {
-
   JumpLog,
   JumpsByType,
   SkydiveLevels,
@@ -25,13 +25,19 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
-  const {jumps, loadJumps} = useContext(SkyLogContext);
+  const {jumps, loadJumps, authToken} = useContext(SkyLogContext);
 
   useEffect( ()=> {
     if(jumps.length=== 0){
       loadJumps();
     }
   },[ loadJumps, jumps.length])
+
+  if (!authToken) {
+    console.log(authToken);
+    return <Redirect to="/sign-in" />;
+  }
+
 
   return (
     <div className={classes.root}>
