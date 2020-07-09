@@ -26,18 +26,17 @@ const LogJumpForm = props => {
   const [open,setOpen] = useState(4200);
 
   const [values, setValues] = useState({
-      id: 18,
-      title: "Chelan Formation",
-
-      freefall: "36s",
-      jumpDate: 1555016400000,
-      type: "freestyle",
-      aircraft:"cessna",
-      location: "Chelan",
-      equipment: "icarus",
-      velocity: "300",
-      notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      signature: "AA Lic145",
+    id: 18,
+    title: "Chelan Formation",
+    freefall: "36s",
+    jumpDate: 1555016400000,
+    type: "freestyle",
+    aircraft:"cessna",
+    location: "Chelan",
+    equipment: "icarus",
+    velocity: "300",
+    notes: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    signature: "AA Lic145",
 
   });
 

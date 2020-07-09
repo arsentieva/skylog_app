@@ -186,7 +186,7 @@ const SignIn = props => {
         throw res;
       }
       const { token} = await res.json();
-      
+
       login(token);
 
     } catch (error) {
