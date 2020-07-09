@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import { LogJumpForm } from './components';
+import { SkyLogContext } from '../../SkyLogContext';
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,6 +15,12 @@ const useStyles = makeStyles(theme => ({
 
 const LogJump = () => {
   const classes = useStyles();
+  const { authToken} = useContext(SkyLogContext);
+
+  if (!authToken) {
+    console.log(authToken);
+    return <Redirect to="/sign-in" />;
+  }
 
   return (
     <div className={classes.root}>
