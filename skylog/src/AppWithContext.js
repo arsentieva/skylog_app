@@ -16,6 +16,11 @@ const AppWithContext = () => {
     setAuthToken(token);
     setNeedLogin(false);
   };
+  const loginOut = () => {
+    window.localStorage.clear();
+    setAuthToken(null);
+    setNeedLogin(true);
+  };
 
   const loadJumps = async()=> {
     const response = await fetch(`${apiBaseUrl}/jumps`, {
@@ -36,7 +41,7 @@ const AppWithContext = () => {
 }
 
   return (
-    <SkyLogContext.Provider value={{ authToken, needLogin, login, jumps, loadJumps}} >
+    <SkyLogContext.Provider value={{ authToken, needLogin, login, loginOut, jumps, loadJumps}} >
      <AlertProvider template={AlertTemplate} {...options}>
        <App />
      </AlertProvider>

@@ -3,9 +3,7 @@ import clsx from 'clsx';
 import GaugeChart from 'react-gauge-chart'
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardHeader, CardContent,IconButton, Typography, Divider} from '@material-ui/core';
-
-import RefreshIcon from '@material-ui/icons/Refresh';
+import { Card, CardHeader, CardContent, Typography, Divider} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {

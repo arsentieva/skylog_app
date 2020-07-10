@@ -3,7 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/styles';
-import {  Card,  CardHeader,  CardContent,  IconButton,  Divider,  Typography} from '@material-ui/core';
+import {  Card,  CardHeader,  CardContent,  Divider,  Typography} from '@material-ui/core';
 
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link as RouterLink , useHistory} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -7,6 +7,7 @@ import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
+import { SkyLogContext } from '../../../../SkyLogContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,14 +29,11 @@ const useStyles = makeStyles(theme => ({
 
 const Topbar = props => {
   const { className, onSidebarOpen, ...rest } = props;
+  const {loginOut} = useContext(SkyLogContext);
   const classes = useStyles();
   const [notifications] = useState([]);
-  let history = useHistory();
-
-  const handleSignOut = () => {
-    window.localStorage.clear();
-    history.push('/sign-in');
-  }
+ 
+  const handleSignOut = () => loginOut();
 
   return (
     <AppBar {...rest} className={clsx(classes.root, className)} >

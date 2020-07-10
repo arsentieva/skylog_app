@@ -6,7 +6,7 @@ import { Divider, Drawer } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import EditLocationIcon from '@material-ui/icons/EditLocation';
 
 import { Profile, SidebarNav } from './components';
@@ -51,9 +51,9 @@ const Sidebar = props => {
       icon: <EditLocationIcon />
     },
     {
-      title: 'Login',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
+      title: 'Sign out',
+      href: '/sign-out',
+      icon: <ExitToAppIcon />
     },
     {
       title: 'Account',
