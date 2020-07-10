@@ -9,6 +9,9 @@ import { apiBaseUrl } from "../../config";
 import GoogleLogin from 'react-google-login';
 import {SkyLogContext} from "../../SkyLogContext";
 
+console.log(apiBaseUrl);
+console.log(process.env);
+
 import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
 const schema = {
