@@ -10,10 +10,6 @@ import GoogleLogin from 'react-google-login';
 import {SkyLogContext} from "../../SkyLogContext";
 import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
-console.log(apiBaseUrl);
-console.log(process);
-
-
 const schema = {
   email: {
     presence: { allowEmpty: false, message: 'is required' },
@@ -174,6 +170,8 @@ const SignIn = props => {
   }
 
   const handleSignIn =async(event) => {
+    console.log(apiBaseUrl);
+
     event.preventDefault();
     let email=formState.values.email;
     let password=formState.values.password;
