@@ -51,11 +51,6 @@ const Sidebar = props => {
       icon: <EditLocationIcon />
     },
     {
-      title: 'Sign out',
-      href: '/sign-out',
-      icon: <ExitToAppIcon />
-    },
-    {
       title: 'Account',
       href: '/account',
       icon: <AccountBoxIcon />
@@ -65,7 +60,12 @@ const Sidebar = props => {
       title: 'Settings',
       href: '/settings',
       icon: <SettingsIcon />
-    }
+    },
+    // {
+    //   title: 'Sign out',
+    //   href: '/sign-out',
+    //   icon: <ExitToAppIcon />
+    // },
   ];
 
   return (

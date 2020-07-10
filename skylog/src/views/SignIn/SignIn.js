@@ -223,9 +223,10 @@ const SignIn = props => {
     }));
   }
   const handleGoogleSignIn = (response) => {
-    window.localStorage.setItem('state-skylog-app-token', response.tokenId);
-    window.localStorage.setItem('state-skylog-app-method', "gapi");
-    history.push('/');
+    // window.localStorage.setItem('state-skylog-app-token', response.tokenId);
+    // window.localStorage.setItem('state-skylog-app-method', "gapi");
+    // history.push('/');
+    login(response.tokenId);
   }
 
   return (
