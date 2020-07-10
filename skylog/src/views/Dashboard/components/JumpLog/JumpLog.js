@@ -118,14 +118,14 @@ return (
             <TableCell>{jump.id}</TableCell>
             <TableCell>{jump.name}</TableCell>
             <TableCell>{moment(jump.jumpDate).format('MMM Do YY, h:mm:ss a')}</TableCell>
-            <TableCell>{jump.type}</TableCell>
+            <TableCell>{jump.JumpType.type}</TableCell>
             <TableCell>{jump.exit}</TableCell>
             <TableCell>{jump.open}</TableCell>
             <TableCell>{jump.exit - jump.open}</TableCell>
             <TableCell>{jump.aircraft}</TableCell>
             <TableCell>{jump.location}</TableCell>
             <TableCell>{jump.wind}</TableCell>
-            <TableCell>{jump.equipment}</TableCell>
+            <TableCell>{jump.Equipment.name}</TableCell>
             <TableCell>{jump.speed}</TableCell>
           </TableRow>
           <TableRow>
