@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';

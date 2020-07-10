@@ -34,7 +34,7 @@ const SkydiveLevels = props => {
       <CardContent>
         <GaugeChart id="gauge-chart2"  nrOfLevels={0} arcsLength={[0.05, 0.15, 0.25, 0.5]} arcPadding={0.01} colors={["#00ffff","#2176F3" ]} arcWidth={0.2}
            percent={0.2} textColor="#00F00"  formatTextValue={value=>value*100+" jumps"} />
-            <Typography className={classes.title} variant="h5" gutterBottom > 135 jumps until bext milestone</Typography>
+            <Typography className={classes.title} variant="h5" gutterBottom > 135 jumps until next milestone</Typography>
       </CardContent>
     </Card>
   );

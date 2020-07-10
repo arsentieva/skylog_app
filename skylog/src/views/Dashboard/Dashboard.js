@@ -34,7 +34,6 @@ const Dashboard = () => {
   },[ loadJumps, jumps.length])
 
   if (!authToken) {
-    console.log(authToken);
     return <Redirect to="/sign-in" />;
   }
 
