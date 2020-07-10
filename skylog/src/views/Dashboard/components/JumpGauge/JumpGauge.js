@@ -1,9 +1,10 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import GaugeChart from 'react-gauge-chart'
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {  Card,  CardHeader,  CardContent,  Typography, Divider} from '@material-ui/core';
+import { SkyLogContext } from '../../../../SkyLogContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +23,21 @@ const useStyles = makeStyles(theme => ({
 
 const JumpsGauge = props => {
   const { className, ...rest } = props;
+  const { jumps } = useContext(SkyLogContext);
    const classes = useStyles();
+
+   const getAvgSpeed = ()=> {
+     let speed = jumps.map(jump=> jump.speed);
+     let avgSpeed =0;
+   if( speed.length>0)
+    {
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      avgSpeed = speed.reduce(reducer)/ speed.length;
+    }
+     return avgSpeed;
+   }
+
+   let percent = getAvgSpeed() /100;
 
    return (
     <Card {...rest} className={clsx(classes.root, className)} >
@@ -31,7 +46,7 @@ const JumpsGauge = props => {
       <CardContent>
       <div className={classes.chartContainer}>
         <GaugeChart id="gauge-chart"  nrOfLevels={40} colors={["#0196F3", " #21CBb0"]} arcWidth={0.35}
-           percent={0.37} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#21CBF3" needleBaseColor="#2176F3" />
+           percent={percent} textColor="#00F00"  formatTextValue={value=>value+"km"} needleColor="#21CBF3" needleBaseColor="#2176F3" />
         <Typography  className={classes.title}  variant="h5" > Average freefall speed </Typography>
         </div>
       </CardContent>
