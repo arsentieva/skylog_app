@@ -170,8 +170,6 @@ const SignIn = props => {
   }
 
   const handleSignIn =async(event) => {
-    console.log(apiBaseUrl);
-
     event.preventDefault();
     let email=formState.values.email;
     let password=formState.values.password;
