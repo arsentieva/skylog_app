@@ -8,11 +8,11 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiBaseUrl } from "../../config";
 import GoogleLogin from 'react-google-login';
 import {SkyLogContext} from "../../SkyLogContext";
+import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
 console.log(apiBaseUrl);
-console.log(process.env);
+console.log(process);
 
-import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
 
 const schema = {
   email: {
