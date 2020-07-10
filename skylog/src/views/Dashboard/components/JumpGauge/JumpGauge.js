@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {  Card,  CardHeader,  CardContent,  IconButton, Typography, Divider} from '@material-ui/core';
-import RefreshIcon from '@material-ui/icons/Refresh';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +26,7 @@ const JumpsGauge = props => {
 
    return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="SPEED" />
+      <CardHeader title="SPEED" />
       <Divider />
       <CardContent>
       <div className={classes.chartContainer}>

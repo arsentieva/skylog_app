@@ -7,7 +7,6 @@ import {  Card,  CardHeader,  CardContent,  IconButton,  Divider,  Typography} f
 
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import AccessibilityIcon from '@material-ui/icons/Accessibility';
-import RefreshIcon from '@material-ui/icons/Refresh';
 import LandscapeIcon from '@material-ui/icons/Landscape';
 
 const useStyles = makeStyles(theme => ({
@@ -100,7 +99,7 @@ const JumpsByType = props => {
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
-      <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMP BY TYPE" />
+      <CardHeader title="JUMP BY TYPE" />
       <Divider />
       <CardContent>
         <div className={classes.chartContainer}>

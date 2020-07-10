@@ -29,7 +29,7 @@ const SkydiveLevels = props => {
 
   return (
     <Card {...rest} className={clsx(classes.root, className)} >
-    <CardHeader action={<IconButton size="small"> <RefreshIcon /> </IconButton> } title="JUMP LEVELS" />
+    <CardHeader title="JUMP LEVELS" />
     <Divider />
       <CardContent>
         <GaugeChart id="gauge-chart2"  nrOfLevels={0} arcsLength={[0.05, 0.15, 0.25, 0.5]} arcPadding={0.01} colors={["#00ffff","#2176F3" ]} arcWidth={0.2}
