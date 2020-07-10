@@ -27,8 +27,9 @@ const AppWithContext = () => {
       headers: { Authorization: `Bearer ${authToken}`}
     });
     if (response.ok) {
-      const jumps = await response.json();
-      setJumps(jumps);
+      const result = await response.json();
+      // console.log(jumps);
+      setJumps(result.jumps);
   }
  }
  const options = {

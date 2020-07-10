@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -9,8 +9,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
-import mockData from './data';
+import { SkyLogContext } from '../../../../SkyLogContext';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -27,12 +26,13 @@ const useStyles = makeStyles(() => ({
 
 const JumpLog = props => {
   const { className, ...rest } = props;
+  const { jumps } = useContext(SkyLogContext);
 
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [viewAll, setViewAll] = useState(false);
-  const [jumps] = useState(mockData);
+  // const [jumps] = useState(mockData);
   let history = useHistory();
 
   const handleChangePage = (newPage) => setPage(newPage);
@@ -81,11 +81,11 @@ const JumpLog = props => {
                   <TableCell>Location</TableCell>
                   <TableCell>Wind</TableCell>
                   <TableCell>Equipment</TableCell>
-                  <TableCell>Velocity</TableCell>
+                  <TableCell>Speed</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {jumps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).reverse().map((jump) => (
+                {jumps.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((jump) => (
                   <JumpRow key={jump.id} jump={jump}/>
                 ))}
               </TableBody>
@@ -116,7 +116,7 @@ return (
               </IconButton>
             </TableCell>
             <TableCell>{jump.id}</TableCell>
-            <TableCell>{jump.title}</TableCell>
+            <TableCell>{jump.name}</TableCell>
             <TableCell>{moment(jump.jumpDate).format('MMM Do YY, h:mm:ss a')}</TableCell>
             <TableCell>{jump.type}</TableCell>
             <TableCell>{jump.exit}</TableCell>
@@ -126,7 +126,7 @@ return (
             <TableCell>{jump.location}</TableCell>
             <TableCell>{jump.wind}</TableCell>
             <TableCell>{jump.equipment}</TableCell>
-            <TableCell>{jump.velocity}</TableCell>
+            <TableCell>{jump.speed}</TableCell>
           </TableRow>
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
