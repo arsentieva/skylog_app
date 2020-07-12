@@ -38,7 +38,6 @@ const TotalPerMonth = props => {
       const jumpMonth =month.substring(1);
       return currentMonth.toString() === jumpMonth;
     })
-    console.log(jumpsThisMonth)
     return jumpsThisMonth;
   }
 

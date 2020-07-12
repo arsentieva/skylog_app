@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import {SkyLogContext} from "../../../../SkyLogContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,8 +36,20 @@ const useStyles = makeStyles(theme => ({
 
 const FreefallDistance = props => {
   const { className, ...rest } = props;
-
+  const {jumps} = useContext(SkyLogContext);
   const classes = useStyles();
+
+  const getFreefallDistance = ()=> {
+    let freefallDistances = jumps.map(jump=> jump.exit - jump.open);
+    let totalDistance = 0;
+    if(freefallDistances.length>0) {
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      totalDistance = freefallDistances.reduce(reducer);
+    }
+     return Math.round(totalDistance / 5280);
+  }
+
+  const totalMiles = getFreefallDistance();
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -45,7 +58,7 @@ const FreefallDistance = props => {
           <Grid item>
             <Typography className={classes.title} color="textSecondary" gutterBottom variant="body2"> FREEFALL DISTANCE</Typography>
             <Divider className={classes.divider} />
-            <Typography variant="h3">5.45km</Typography>
+            <Typography variant="h3">{totalMiles} miles</Typography>
           </Grid>
         </Grid>
         <div className={classes.difference}>
