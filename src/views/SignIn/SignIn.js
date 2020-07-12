@@ -130,8 +130,6 @@ const SignIn = props => {
     errors: {}
   });
 
-
-
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
