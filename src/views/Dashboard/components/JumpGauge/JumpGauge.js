@@ -27,15 +27,14 @@ const JumpsGauge = props => {
    const classes = useStyles();
 
    const getAvgSpeed = ()=> {
-     let speed = jumps.map(jump=> jump.speed);
-     let avgSpeed =0;
-   if( speed.length>0)
-    {
+    let speed = jumps.map(jump=> jump.speed);
+    let avgSpeed =0;
+    if( speed.length>0){
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       avgSpeed = speed.reduce(reducer)/ speed.length;
     }
-     return avgSpeed;
-   }
+   return avgSpeed;
+    }
 
    let percent = getAvgSpeed() /100;
 
