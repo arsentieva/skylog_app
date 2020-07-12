@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import {SkyLogContext} from "../../../../SkyLogContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,6 +38,17 @@ const Dropzones = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
+  const {jumps} = useContext(SkyLogContext)
+  const getUniqueDropzones = ()=> {
+    let uniqueDropzones=[]
+    let dropzones = jumps.map(jump=> jump.location);
+    if(dropzones) {
+      uniqueDropzones= [... new Set(dropzones)]
+    }
+    return uniqueDropzones;
+  }
+
+  const uniqueDropzones = getUniqueDropzones();
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -49,7 +61,7 @@ const Dropzones = props => {
         </Grid>
             <div className={classes.location}>
             <LocationOnIcon className={classes.locationIcon}/>
-            <Typography variant="h1">8</Typography>
+            <Typography variant="h1">{uniqueDropzones.length}</Typography>
             </div>
 
       </CardContent>

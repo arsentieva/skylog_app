@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
+import {SkyLogContext} from "../../../../SkyLogContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,8 +33,19 @@ const useStyles = makeStyles(theme => ({
 
 const Aircrafts = props => {
   const { className, ...rest } = props;
-
+  const {jumps} = useContext(SkyLogContext);
   const classes = useStyles();
+
+  const getUniqueAircrafts = ()=> {
+    let uniqueAircrafts=[]
+    let aircrafts = jumps.map(jump=> jump.aircrafts);
+    if(aircrafts) {
+      uniqueAircrafts= [... new Set(aircrafts)]
+    }
+    return uniqueAircrafts;
+  }
+
+  const uniqueAircrafts = getUniqueAircrafts();
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -46,7 +58,7 @@ const Aircrafts = props => {
         </Grid>
         <div className={classes.airplane}>
           <AirplanemodeActiveIcon className={classes.airplaneIcon} />
-          <Typography  color="#000000"  variant="h1">15</Typography>
+  <Typography  color="#000000"  variant="h1">{uniqueAircrafts.length}</Typography>
         </div>
       </CardContent>
     </Card>
