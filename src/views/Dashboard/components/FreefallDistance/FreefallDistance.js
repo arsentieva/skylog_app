@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import moment from "moment";
 import {SkyLogContext} from "../../../../SkyLogContext";
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +41,7 @@ const FreefallDistance = props => {
   const {jumps} = useContext(SkyLogContext);
   const classes = useStyles();
 
-  const getFreefallDistance = ()=> {
+  const getFreefallDistanceFormatted = ()=> {
     let freefallDistances = jumps.map(jump=> jump.exit - jump.open);
     let totalDistance = 0;
     if(freefallDistances.length>0) {
@@ -48,8 +50,37 @@ const FreefallDistance = props => {
     }
      return Math.round(totalDistance / 5280);
   }
+  const getFreefallDistance = (passedJumps)=> {
+    let freefallDistances = passedJumps.map(jump=> jump.exit - jump.open);
+    let totalDistance = 0;
+    if(freefallDistances.length>0) {
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      totalDistance = freefallDistances.reduce(reducer);
+    }
+     return Math.round(totalDistance / 5280);
+  }
 
-  const totalMiles = getFreefallDistance();
+  const totalMiles = getFreefallDistanceFormatted();
+
+  const currentMonth = new Date().getMonth()+1;
+  const getMonthJumps=(month)=> {
+    let jumpsThisMonth= jumps.filter(jump=> {
+      let [_, jumpMonth] = jump.date.split("-");
+      const jumpMonthFormatted =jumpMonth.substring(1);
+      return month.toString() === jumpMonthFormatted;
+    })
+    return jumpsThisMonth;
+  }
+
+  const jumpsCurrentMonth = getMonthJumps(currentMonth);
+  const currentMonthFreefallTime = getFreefallDistance(jumpsCurrentMonth);
+  const jumpsLastMonth = getMonthJumps(currentMonth-1);
+  const lastMonthFreefallTime = getFreefallDistance(jumpsLastMonth);
+
+  const increase = currentMonthFreefallTime > lastMonthFreefallTime;
+
+  var percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
+                         ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -61,9 +92,9 @@ const FreefallDistance = props => {
             <Typography variant="h3">{totalMiles} miles</Typography>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2"> 14% </Typography>
+        <div className={classes.difference}> { increase ?  <ArrowUpwardIcon className={classes.differenceIcon} /> :
+          <ArrowDownwardIcon className={classes.differenceIcon} />}
+          <Typography className={classes.differenceValue} variant="body2"> {percentDelta}% </Typography>
           <Typography className={classes.caption} variant="caption" > Since last month </Typography>
         </div>
       </CardContent>

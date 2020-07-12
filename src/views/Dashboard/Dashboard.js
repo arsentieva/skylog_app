@@ -47,9 +47,9 @@ const Dashboard = () => {
         <Grid item lg={3} sm={6} xl={2} xs={12}> <FreefallDistance /> </Grid>
         <Grid item lg={3} sm={6} xl={2} xs={12}> <Dropzones /> </Grid>
         <Grid item lg={3} sm={6} xl={2} xs={12}> <Aircrafts /> </Grid>
-        <Grid item lg={3} sm={6} xl={4} xs={12}> <SkydiveLevels/> </Grid>
-        <Grid item lg={4} md={6} xl={4} xs={12}> <JumpsByType /> </Grid>
-        <Grid item lg={4} md={6} xl={4} xs={12}> <JumpGauge /> </Grid>
+        <Grid item lg={6} sm={6} xl={4} xs={12}> <SkydiveLevels/> </Grid>
+        <Grid item lg={6} md={6} xl={4} xs={12}> <JumpsByType /> </Grid>
+        <Grid item lg={6} md={6} xl={4} xs={12}> <JumpGauge /> </Grid>
         <Grid item lg={12} md={12} xl={12} xs={12}> <JumpLog /> </Grid>
 
       </Grid>

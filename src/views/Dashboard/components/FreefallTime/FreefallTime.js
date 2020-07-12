@@ -41,7 +41,6 @@ const FreefallTime = props => {
   const {jumps} = useContext(SkyLogContext);
   const classes = useStyles();
 
-
   const getFreeFallTimeFormatted =()=> {
     let totalFreefallTimes = jumps.map(jump=> jump.freefallTime);
     let totalTime=0;
@@ -62,7 +61,6 @@ const FreefallTime = props => {
   }
   const totalFreefallTime = getFreeFallTimeFormatted();
 
-  //TODO calculate jumps per months
   const currentMonth = new Date().getMonth()+1;
   const getMonthJumps=(month)=> {
     let jumpsThisMonth= jumps.filter(jump=> {
@@ -80,7 +78,6 @@ const FreefallTime = props => {
 
   const increase = currentMonthFreefallTime > lastMonthFreefallTime;
 
-  //TODO calculate delta % between 2 months
   var percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
                          ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
 
