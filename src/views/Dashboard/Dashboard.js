@@ -37,7 +37,6 @@ const Dashboard = () => {
     return <Redirect to="/sign-in" />;
   }
 
-
   return (
     <div className={classes.root}>
       <Grid container spacing={4} >
