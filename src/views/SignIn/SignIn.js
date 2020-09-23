@@ -8,7 +8,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiBaseUrl } from "../../config";
 import GoogleLogin from 'react-google-login';
 import {SkyLogContext} from "../../SkyLogContext";
-import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons';
+import { Google as GoogleIcon } from 'icons';
 
 const schema = {
   email: {
@@ -202,11 +202,39 @@ const SignIn = props => {
     }
   };
 
-  // const login=(token)=>{
-  //   window.localStorage.setItem('state-skylog-app-token', token);
-  //   window.localStorage.setItem('state-skylog-app-method', "user");
-  //   history.push('/');
-  // }
+  const handleDemoSignIn = async(event) => {
+    event.preventDefault();
+    let email="demo@skylog.com";
+    let password="1";
+    try {
+      const res = await fetch(`${apiBaseUrl}/users/token`, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        throw res;
+      }
+      const { token} = await res.json();
+
+      login(token);
+
+    } catch (error) {
+      console.log(error)
+      let errorMsg ="";
+      if(error.status === 401) {
+        errorMsg = "The provided credentials were invalid";
+      }
+      setFormState(formState => ({
+        ...formState,
+        isValid: false,
+        errors: { email: [errorMsg], password: [""] },
+
+      }));
+      console.log(formState);
+    }
+  };
 
   const hasError = field =>
     formState.touched[field] && formState.errors[field] ? true : false;
@@ -246,12 +274,9 @@ const SignIn = props => {
             <div className={classes.contentBody}>
               <form className={classes.form}  onSubmit={handleSignIn} >
                 <Typography className={classes.title} variant="h2"> Sign in</Typography>
-                <Typography  color="textSecondary" gutterBottom >Sign in with social media </Typography>
                 <Grid className={classes.socialButtons} container spacing={2} >
                   <Grid item>
-                    <Button color="primary" onClick={handleSignIn} size="large" variant="contained" >
-                      <FacebookIcon className={classes.socialIcon} /> Login with Facebook
-                    </Button>
+                    <Button color="primary" onClick={handleDemoSignIn} size="large" variant="contained" >Login With Demo User</Button>
                   </Grid>
                   <Grid item>
                     <GoogleLogin clientId="903312556036-iadcqp28eqijomh10mckbi1r6962vlcv.apps.googleusercontent.com"
