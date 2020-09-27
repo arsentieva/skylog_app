@@ -76,7 +76,6 @@ const LogJumpForm = props => {
 
   const handleSave = async (event)=> {
     event.preventDefault();
-    console.log(jumpData)
     const response = await fetch(`${apiBaseUrl}/jumps`, {
       method: "post",
       headers: {
@@ -135,7 +134,6 @@ const LogJumpForm = props => {
       setSpeed(event.target.value);
   };
   const handleChangeDate = event => {
-    console.log(event.target.value)
       setDate(event.target.value);
   };
   const handleChangeNotes = event => {
@@ -170,7 +168,7 @@ const LogJumpForm = props => {
               <FormControl className={classes.formControl}>
                 <InputLabel>Equipment</InputLabel>
                 <Select labelId="demo-simple-select-label" id="demo-simple-select" value={selectedEquipment} onChange={handleChangeEquipment} autoWidth>
-                { equipment.map((eq) => { return <MenuItem key={eq.id} value={eq.id}> {eq.name}</MenuItem>})}
+                { console.log(equipment) && equipment.map((eq) => { return <MenuItem key={eq.id} value={eq.id}> {eq.name}</MenuItem>})}
                 </Select>
               </FormControl>
             </Grid>

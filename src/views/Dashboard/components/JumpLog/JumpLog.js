@@ -107,6 +107,13 @@ function JumpRow (props) {
   const { jump } = props;
   const [open, setOpen] = useState(false);
 
+ const getDate =(jump) => {
+  console.log(jump);
+  let date = moment(jump.date).format('MMM Do YY, h:mm:ss a');
+  console.log(date);
+  return date;
+ }
+
 return (
         <>
           <TableRow hover key={jump.id}>
@@ -117,7 +124,7 @@ return (
             </TableCell>
             <TableCell>{jump.id}</TableCell>
             <TableCell>{jump.name}</TableCell>
-            <TableCell>{moment(jump.jumpDate).format('MMM Do YY, h:mm:ss a')}</TableCell>
+            <TableCell>{getDate(jump)}</TableCell>
             <TableCell>{jump.JumpType.type}</TableCell>
             <TableCell>{jump.exit}</TableCell>
             <TableCell>{jump.open}</TableCell>

@@ -28,7 +28,6 @@ const AppWithContext = () => {
     });
     if (response.ok) {
       const result = await response.json();
-      // console.log(jumps);
       setJumps(result.jumps);
   }
  }
