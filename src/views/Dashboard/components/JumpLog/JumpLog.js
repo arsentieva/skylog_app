@@ -29,16 +29,17 @@ const JumpLog = props => {
   const { jumps } = useContext(SkyLogContext);
 
   const classes = useStyles();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(2);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [viewAll, setViewAll] = useState(false);
-  // const [jumps] = useState(mockData);
   let history = useHistory();
 
-  const handleChangePage = (newPage) => setPage(newPage);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
+    setRowsPerPage(parseInt(event.target.value, 5));
     setPage(0);
   };
   const handleJumpLog = () => history.push('/log-jump');
