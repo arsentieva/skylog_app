@@ -164,11 +164,11 @@ const LogJumpForm = props => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item md={2} xs={3} >
+            <Grid item md={2} xs={6} >
               <FormControl className={classes.formControl}>
                 <InputLabel>Equipment</InputLabel>
                 <Select labelId="demo-simple-select-label" id="demo-simple-select" value={selectedEquipment} onChange={handleChangeEquipment} autoWidth>
-                { console.log(equipment) && equipment.map((eq) => { return <MenuItem key={eq.id} value={eq.id}> {eq.name}</MenuItem>})}
+                { equipment.map((eq) => { return <MenuItem key={eq.id} value={eq.id}> {eq.name} </MenuItem>})}
                 </Select>
               </FormControl>
             </Grid>
