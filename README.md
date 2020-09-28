@@ -24,9 +24,14 @@ Skylog is a all in one app design for skydivers to keep track of their skydiving
 	- Bcrypt
 	
 # Features
+- User Login/ Registration
+- Skidiver's Dashboard with useful statistics
+- Ability to log Skydiving Jumps
+- Clean UX design for an intuitive usage
 
 
 # Future Implementation
+- Landing Page
 - Equipment CRUD operations
 - Notifications on equipment and license renuwal
 - Allow Print to PDF
