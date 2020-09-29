@@ -72,14 +72,23 @@ const FreefallTime = props => {
   }
 
   const jumpsCurrentMonth = getMonthJumps(currentMonth);
-  const currentMonthFreefallTime = getFreeFallTime(jumpsCurrentMonth);
-  const jumpsLastMonth = getMonthJumps(currentMonth-1);
-  const lastMonthFreefallTime = getFreeFallTime(jumpsLastMonth);
+  let currentMonthFreefallTime = 0;
+  let lastMonthFreefallTime = 0;
+  let percentDelta = 0;
+  if(jumpsCurrentMonth) // if this will return 0 jumps this check should evaluate to 0 which is falsey so the code will not be executed
+  {
+     currentMonthFreefallTime = getFreeFallTime(jumpsCurrentMonth);
+  }
+    const jumpsLastMonth = getMonthJumps(currentMonth-1);
+    if(jumpsLastMonth){
+      lastMonthFreefallTime = getFreeFallTime(jumpsLastMonth);
+    }
 
-  const increase = currentMonthFreefallTime > lastMonthFreefallTime;
-
-  var percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
-                         ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
+    const increase = currentMonthFreefallTime > lastMonthFreefallTime;
+    if(currentMonthFreefallTime!=0 || lastMonthFreefallTime!=0){
+      percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
+      ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
+    }
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>

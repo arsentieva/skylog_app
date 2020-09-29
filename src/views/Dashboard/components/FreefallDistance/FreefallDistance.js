@@ -72,16 +72,24 @@ const FreefallDistance = props => {
     return jumpsThisMonth;
   }
 
-  const jumpsCurrentMonth = getMonthJumps(currentMonth);
-  const currentMonthFreefallTime = getFreefallDistance(jumpsCurrentMonth);
-  const jumpsLastMonth = getMonthJumps(currentMonth-1);
-  const lastMonthFreefallTime = getFreefallDistance(jumpsLastMonth);
 
+  let currentMonthFreefallTime = 0;
+  let lastMonthFreefallTime = 0;
+  let percentDelta = 0;
+  const jumpsCurrentMonth = getMonthJumps(currentMonth);
+  if(jumpsCurrentMonth){
+   currentMonthFreefallTime = getFreefallDistance(jumpsCurrentMonth);
+  }
+  const jumpsLastMonth = getMonthJumps(currentMonth-1);
+  if(jumpsLastMonth){
+   lastMonthFreefallTime = getFreefallDistance(jumpsLastMonth);
+  }
   const increase = currentMonthFreefallTime > lastMonthFreefallTime;
 
-  var percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
+   if(currentMonthFreefallTime!=0 || lastMonthFreefallTime!=0){
+   percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
                          ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
-
+   }
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
