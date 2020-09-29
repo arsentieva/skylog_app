@@ -85,7 +85,7 @@ const FreefallTime = props => {
     }
 
     const increase = currentMonthFreefallTime > lastMonthFreefallTime;
-    if(currentMonthFreefallTime!=0 || lastMonthFreefallTime!=0){
+    if(currentMonthFreefallTime!==0 || lastMonthFreefallTime!==0){
       percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
       ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
     }

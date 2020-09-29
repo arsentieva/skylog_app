@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Divider } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import moment from "moment";
 import {SkyLogContext} from "../../../../SkyLogContext";
 
 const useStyles = makeStyles(theme => ({
@@ -86,7 +85,7 @@ const FreefallDistance = props => {
   }
   const increase = currentMonthFreefallTime > lastMonthFreefallTime;
 
-   if(currentMonthFreefallTime!=0 || lastMonthFreefallTime!=0){
+   if(currentMonthFreefallTime!==0 || lastMonthFreefallTime!==0){
    percentDelta =  Math.round(100 * Math.abs( (currentMonthFreefallTime - lastMonthFreefallTime) /
                          ( (currentMonthFreefallTime+lastMonthFreefallTime)/2 ) ));
    }
