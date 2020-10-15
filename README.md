@@ -1,4 +1,4 @@
-# Intorduction 
+# Introduction 
 Skylog is a all in one app design for skydivers to keep track of their skydiving adventures. Jumps can be loggged on demand and interactive statistics about the skydivers's activity generated.
 
 # Live Link
